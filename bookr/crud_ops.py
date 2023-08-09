@@ -17,6 +17,7 @@ def many_to_one_example():
     publisher = Publisher.objects.get(name='Packt Publishing')
     book = Book.objects.create(title="Advanced Deep Learning with Keras", publication_date=date(2018, 10, 31),
                                isbn="9781788629416", publisher=publisher)
+    print(book)
     print('\n>>> END <<<')
 
 
@@ -60,33 +61,25 @@ def get_examples():
 
     publisher = Publisher.objects.get(name='Pocket Books')
 
-    publisher
-    publisher.name
-
-    publisher.website
-    publisher.email
-
-    vars(publisher)
+    print(publisher)
+    print(publisher.name)
+    print(publisher.website)
+    print(publisher.email)
+    print(vars(publisher))
 
     publisher = Publisher.objects.get(website='https://pocketbookssampleurl.com')
 
-    publisher.name
-
-    Publisher.objects.get(pk=2)
-
-    Publisher.objects.get(id=2)
+    print(publisher.name)
+    print(Publisher.objects.get(pk=2))
+    print(Publisher.objects.get(id=2))
 
     from reviews.models import Contributor
 
-    Contributor.objects.all()
-
     contributors = Contributor.objects.all()
 
-    contributors[0]
-
-    contributors[0].first_names
-
-    contributors[0].last_names
+    print(contributors[0])
+    print(contributors[0].first_names)
+    print(contributors[0].last_names)
 
     print('\n>>> END <<<')
 
@@ -99,29 +92,24 @@ def filter_example():
 
     Contributor.objects.create(first_names='Peter', last_names='Tyrrell', email='PeterTyrrell@example.com')
 
-    Contributor.objects.filter(first_names='Peter')
-
-    Contributor.objects.filter(first_names='Rowel')
-
-    Contributor.objects.filter(first_names='Nobody')
+    print(Contributor.objects.filter(first_names='Peter'))
+    print(Contributor.objects.filter(first_names='Rowel'))
+    print(Contributor.objects.filter(first_names='Nobody'))
 
     book = Book.objects.filter(publication_date__gt=date(2014, 1, 1))
 
-    book
-
-    book[0].publication_date
+    print(book)
+    print(book[0].publication_date)
 
     book = Book.objects.filter(title__contains='Deep learning')
 
-    book
-
-    book[0].title
-
-    Contributor.objects.all()
-
-    Contributor.objects.exclude(first_names='Peter')
+    print(book)
+    print(book[0].title)
+    print(Contributor.objects.all())
+    print(Contributor.objects.exclude(first_names='Peter'))
 
     books = Book.objects.order_by("publication_date")
+    print(books)
 
     print('\n>>> END <<<')
 
@@ -150,6 +138,7 @@ def order_by_example():
     print(books[1])
 
     publishers = Publisher.objects.all().values()
+    print(publishers)
     print('\n>>> END <<<')
 
 
@@ -175,5 +164,9 @@ def update_example():
 def delete_example():
     from reviews.models import Contributor, Book
     print(Contributor.objects.get(last_names='Wharton').delete())
-    print(Contributor.objects.get(last_names='Wharton'))
+    try:
+        print(Contributor.objects.get(last_names='Wharton'))
+    except Exception as ex:
+        print(type(ex))
+        print(ex)
     print('\n>>> END <<<')

@@ -3,6 +3,7 @@
 import os
 import sys
 from crud_ops import *
+# os.remove('db.sqlite3')
 
 
 def main():
@@ -17,7 +18,17 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-    many_to_one_example()
+    # call your functions here ########
+    # crud_ops()
+    # many_to_one_example()
+    # many_to_many_example()
+    # get_examples()
+    # filter_example()
+    # order_by_example()
+    # query_many_to_many()
+    # update_example()
+    # delete_example()
+
 
 if __name__ == '__main__':
     main()
